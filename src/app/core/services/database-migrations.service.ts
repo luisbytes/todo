@@ -19,7 +19,7 @@ export class DatabaseMigrationsService {
           title TEXT NOT NULL,
           completed INTEGER NOT NULL DEFAULT 0,
           category_id INTEGER NOT NULL,
-          FOREIGN KEY(category_id) REFERENCES categories(id)
+          FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE CASCADE
         )`,
         "INSERT OR IGNORE INTO categories (id, name) VALUES (1, 'Trabajo')",
         "INSERT OR IGNORE INTO categories (id, name) VALUES (2, 'Personal')",

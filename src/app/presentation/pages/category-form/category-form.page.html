@@ -8,18 +8,17 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <ion-input
+      formControlName="name"
       label="Nombre de la Categoría"
       label-placement="floating"
       fill="solid"
       placeholder="Ingrese el nombre de la categoría"
     ></ion-input>
+
+    <ion-button type="submit" expand="block" class="ion-margin-top" [disabled]="form.invalid">
+      {{ title() }}
+    </ion-button>
   </form>
-
-  <ion-button expand="block" class="ion-margin-top">
-    <ion-icon slot="start" name="add-outline"></ion-icon>
-
-    {{ title() }}
-  </ion-button>
 </ion-content>
