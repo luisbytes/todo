@@ -1,10 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { NavController } from '@ionic/angular';
 
-import { Category } from '@app/core/entities';
-import { CategoryRepository, TodoRepository } from '@app/core/repositories';
+import { CategoryStore } from '@app/presentation/store/category.store';
+import { TodoStore } from '@app/presentation/store/todo.store';
 
 @Component({
   selector: 'app-add-todo',
@@ -13,19 +13,19 @@ import { CategoryRepository, TodoRepository } from '@app/core/repositories';
   standalone: false,
 })
 export class AddTodoPage implements OnInit {
+  private todoStore = inject(TodoStore);
+  private categoryStore = inject(CategoryStore);
+
   form?: FormGroup;
-  categories: Category[] = [];
-  isSubmitting = false;
+  categories = this.categoryStore.entities;
+  isSubmitting = signal(false);
 
   private formBuilder = inject(FormBuilder);
-  private todoRepository = inject(TodoRepository);
-  private categoryRepository = inject(CategoryRepository);
+
   private navController = inject(NavController);
 
   async ngOnInit(): Promise<void> {
-    this.categories = await this.categoryRepository.getAll();
-
-    const defaultCategory = this.categories.length > 0 ? this.categories[0].name : '';
+    const defaultCategory = this.categories.length > 0 ? this.categories()?.[0].name : '';
 
     this.form = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(1)]],
@@ -38,19 +38,19 @@ export class AddTodoPage implements OnInit {
       return;
     }
 
-    this.isSubmitting = true;
+    this.isSubmitting.set(true);
 
     try {
       const { title, category } = this.form?.value;
 
-      await this.todoRepository.create({
+      await this.todoStore.createTodo({
         title: title.trim(),
         category,
       });
 
       this.navController.navigateBack('/tabs/home');
     } finally {
-      this.isSubmitting = false;
+      this.isSubmitting.set(false);
     }
   }
 }
