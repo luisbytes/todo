@@ -31,6 +31,7 @@ Before you can run the application, make sure you have the following installed o
 
 ```bash
 npm install
+pod repo update
 ```
 1. Adds the platforms you want to develop for:
 
