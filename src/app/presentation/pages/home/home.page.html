@@ -1,10 +1,10 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title> Todo List </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content class="ion-padding">
   <ion-list lines="full">
     @for (todo of todos(); track $index) {
       <ion-item-sliding>
