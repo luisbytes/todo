@@ -7,6 +7,7 @@ import { Category } from '@app/core/entities';
 import { RemoteConfigService } from '@app/core/services/remote-config.service';
 import { ToastService } from '@app/presentation/services/toast.service';
 import { CategoryStore } from '@app/presentation/store/category.store';
+import { TodoStore } from '@app/presentation/store/todo.store';
 
 @Component({
   selector: 'app-categories',
@@ -16,6 +17,7 @@ import { CategoryStore } from '@app/presentation/store/category.store';
 })
 export class CategoriesPage implements OnInit {
   private categoryStore = inject(CategoryStore);
+  private todoStore = inject(TodoStore);
 
   private alertController = inject(AlertController);
   private router = inject(Router);
@@ -64,6 +66,8 @@ export class CategoriesPage implements OnInit {
   private async performDeleteCategory(category: Category) {
     try {
       await this.categoryStore.deleteCategory(category.id);
+
+      await this.todoStore.loadTodos();
 
       this.closeSlidingItems();
 
