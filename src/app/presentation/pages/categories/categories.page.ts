@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { AlertController, IonList } from '@ionic/angular';
 
 import { Category } from '@app/core/entities';
-import { CategoryRepository } from '@app/core/repositories';
 import { RemoteConfigService } from '@app/core/services/remote-config.service';
 import { ToastService } from '@app/presentation/services/toast.service';
+import { CategoryStore } from '@app/presentation/store/category.store';
+import { TodoStore } from '@app/presentation/store/todo.store';
 
 @Component({
   selector: 'app-categories',
@@ -15,21 +16,20 @@ import { ToastService } from '@app/presentation/services/toast.service';
   standalone: false,
 })
 export class CategoriesPage implements OnInit {
-  private categoryRepository = inject(CategoryRepository);
+  private categoryStore = inject(CategoryStore);
+  private todoStore = inject(TodoStore);
+
   private alertController = inject(AlertController);
   private router = inject(Router);
   private toastService = inject(ToastService);
   private categoriesList = viewChild<IonList>('categoriesList');
   private remoteConfig = inject(RemoteConfigService);
 
-  categories = signal<Category[]>([]);
+  categories = this.categoryStore.entities;
   categoryAddEnabled = signal(false);
 
   ngOnInit(): void {
     this.getFlag();
-  }
-
-  ionViewDidEnter() {
     this.loadCategories();
   }
 
@@ -65,8 +65,12 @@ export class CategoriesPage implements OnInit {
 
   private async performDeleteCategory(category: Category) {
     try {
-      await this.categoryRepository.delete(category.id);
-      await this.loadCategories();
+      await this.categoryStore.deleteCategory(category.id);
+
+      await this.todoStore.loadTodos();
+
+      this.closeSlidingItems();
+
       await this.toastService.showSuccess('Categoría eliminada correctamente');
     } catch (error) {
       await this.toastService.showError('Error al eliminar la categoría');
@@ -74,11 +78,7 @@ export class CategoriesPage implements OnInit {
   }
 
   private async loadCategories() {
-    const categories = await this.categoryRepository.getAll();
-
-    this.categories.set(categories);
-
-    await this.closeSlidingItems();
+    await this.categoryStore.loadCategories();
   }
 
   private async closeSlidingItems() {

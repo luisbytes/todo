@@ -10,7 +10,7 @@
 <ion-content class="ion-padding">
   @if (form) {
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      @if (categories.length === 0) {
+      @if (categories().length === 0) {
         <ion-item lines="none">
           <ion-icon slot="start" name="warning-outline" color="warning"></ion-icon>
           No hay categorías disponibles. Por favor, crea una categoría antes de agregar tareas.
@@ -28,7 +28,7 @@
           fill="solid"
           placeholder="Ingrese el nombre de la tarea"
           errorText="El título es requerido"
-          [disabled]="isSubmitting"
+          [disabled]="isSubmitting()"
         ></ion-input>
 
         <ion-item class="ion-margin-top" lines="none">
@@ -36,16 +36,16 @@
             errorText="La categoría es requerida"
             formControlName="category"
             label="Categoría"
-            [disabled]="isSubmitting || categories.length === 0"
+            [disabled]="isSubmitting() || categories().length === 0"
           >
-            @for (categoryItem of categories; track categoryItem.id) {
+            @for (categoryItem of categories(); track categoryItem.id) {
               <ion-select-option [value]="categoryItem.name">{{ categoryItem.name }}</ion-select-option>
             }
           </ion-select>
         </ion-item>
 
-        <ion-button type="submit" expand="block" class="ion-margin-top" [disabled]="form.invalid || isSubmitting">
-          @if (isSubmitting) {
+        <ion-button type="submit" expand="block" class="ion-margin-top" [disabled]="form.invalid || isSubmitting()">
+          @if (isSubmitting()) {
             <ion-spinner name="crescent"></ion-spinner>
           } @else {
             <ion-icon slot="start" name="add-outline"></ion-icon>
