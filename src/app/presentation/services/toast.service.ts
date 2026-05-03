@@ -14,7 +14,7 @@ export class ToastService extends ToastController {
       duration: this.duration,
       color: 'success',
       icon: 'happy-outline',
-      positionAnchor: 'tab-bar',
+      position: 'top',
       swipeGesture: 'vertical',
     });
 
@@ -26,7 +26,7 @@ export class ToastService extends ToastController {
       message,
       duration: this.duration,
       color: 'danger',
-      positionAnchor: 'tab-bar',
+      position: 'top',
       swipeGesture: 'vertical',
     });
 
