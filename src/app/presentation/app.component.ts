@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+
+import { Platform } from '@ionic/angular';
+
+import { DatabaseService } from '@app/core/services/database.service';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +10,17 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
   standalone: false,
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit {
+  private platform = inject(Platform);
+  private database = inject(DatabaseService);
+
+  async ngOnInit(): Promise<void> {
+    await this.platform.ready();
+
+    try {
+      await this.database.initialize();
+    } catch (error) {
+      console.error('Failed to initialize database', error);
+    }
+  }
 }

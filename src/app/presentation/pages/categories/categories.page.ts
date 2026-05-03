@@ -10,8 +10,8 @@ import { Category } from '@app/core/entities';
 })
 export class CategoriesPage implements OnInit {
   categories = signal<Category[]>([
-    { id: '1', name: 'Work' },
-    { id: '2', name: 'Personal' },
+    { id: 1, name: 'Work' },
+    { id: 2, name: 'Personal' },
   ]);
 
   constructor() {}

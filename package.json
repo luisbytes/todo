@@ -5,9 +5,9 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start:android": "ionic cordova run android -l --external",
+    "start:android": "ionic cordova run android",
     "build:android": "ionic cordova build android",
-    "start:ios": "ionic cordova run ios -l --external",
+    "start:ios": "ionic cordova run ios",
     "build:ios": "ionic cordova build ios",
     "lint": "ng lint",
     "fmt": "prettier --write \"src/app/**/*.{ts,scss,html}\""
@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/platform-browser-dynamic": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "@awesome-cordova-plugins/sqlite": "^9.1.4",
     "@ionic/angular": "^8.0.0",
     "@ionic/cordova-builders": "12.3.0",
     "ionicons": "^7.0.0",
@@ -50,6 +51,7 @@
     "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-sqlite-storage": "^7.0.0",
     "eslint": "^9.16.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^48.2.1",
@@ -71,7 +73,8 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "android"
