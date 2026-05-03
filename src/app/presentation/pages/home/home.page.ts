@@ -11,6 +11,7 @@ import { Todo } from '@app/core/entities';
 export class HomePage {
   todos = signal<Todo[]>([
     {
+      id: 1,
       category: 'Work',
       title: 'Finish the project report',
       completed: false,
