@@ -2,6 +2,11 @@
 
 This is a simple To-Do application built using Ionic/Angular/Cordova. It allows users to add and delete tasks from their to-do list.
 
+## Features
+
+- Sqlite database for local storage
+- Remote Config for enabled or disable add category feature
+
 ## Prerequisites
 
 Before you can run the application, make sure you have the following installed on your machine:
