@@ -6,6 +6,7 @@ import { NavController } from '@ionic/angular';
 
 import { ToastService } from '@app/presentation/services/toast.service';
 import { CategoryStore } from '@app/presentation/store/category.store';
+import { TodoStore } from '@app/presentation/store/todo.store';
 
 @Component({
   selector: 'app-category-form',
@@ -15,6 +16,7 @@ import { CategoryStore } from '@app/presentation/store/category.store';
 })
 export class CategoryFormPage implements OnInit {
   private categoryStore = inject(CategoryStore);
+  private todoStore = inject(TodoStore);
 
   id = input<string>();
 
@@ -60,8 +62,8 @@ export class CategoryFormPage implements OnInit {
     }
 
     await this.categoryStore.updateCategory(Number(this.id()), this.form.value.name);
-
     await this.toastService.showSuccess('Categoría actualizada exitosamente');
+    await this.todoStore.loadTodos();
     this.navController.back();
   }
 
