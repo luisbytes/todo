@@ -1,7 +1,8 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 
 import { Todo } from '@app/core/entities';
-import { CategoryRepository, TodoRepository } from '@app/core/repositories';
+import { CategoryStore } from '@app/presentation/store/category.store';
+import { TodoStore } from '@app/presentation/store/todo.store';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,16 @@ import { CategoryRepository, TodoRepository } from '@app/core/repositories';
   standalone: false,
 })
 export class HomePage implements OnInit {
-  todos = signal<Todo[]>([]);
-  categories = signal<string[]>([]);
+  private todoStore = inject(TodoStore);
+  private categoryStore = inject(CategoryStore);
+
+  todos = this.todoStore.entities;
+
+  categories = computed(() => {
+    const entities = this.categoryStore.entities();
+
+    return entities.map((category) => category.name);
+  });
 
   selectedCategory = signal<string>('');
 
@@ -25,14 +34,7 @@ export class HomePage implements OnInit {
     return this.todos();
   });
 
-  private todoRepository = inject(TodoRepository);
-  private categoryRepository = inject(CategoryRepository);
-
   async ngOnInit(): Promise<void> {
-    await this.loadData();
-  }
-
-  async ionViewWillEnter(): Promise<void> {
     await this.loadData();
   }
 
@@ -41,19 +43,15 @@ export class HomePage implements OnInit {
   }
 
   async onTodoChecked(todo: Todo, completed: boolean): Promise<void> {
-    await this.todoRepository.toggleCompleted(todo.id, completed);
+    await this.todoStore.toggleCompleted(todo.id, completed);
     await this.loadData();
   }
 
   async onDeleteTodo(todo: Todo): Promise<void> {
-    await this.todoRepository.delete(todo.id);
-    await this.loadData();
+    await this.todoStore.deleteTodo(todo.id);
   }
 
   private async loadData(): Promise<void> {
-    const [todos, categories] = await Promise.all([this.todoRepository.getAll(), this.categoryRepository.getAll()]);
-
-    this.todos.set(todos);
-    this.categories.set(categories.map((category) => category.name));
+    await Promise.all([this.todoStore.loadTodos(), this.categoryStore.loadCategories()]);
   }
 }
