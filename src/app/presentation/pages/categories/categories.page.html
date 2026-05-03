@@ -23,6 +23,14 @@
         </ion-item-options>
       </ion-item-sliding>
     }
+
+    @if (categories().length === 0) {
+      <ion-item>
+        <ion-icon slot="start" name="sad-outline" color="primary"></ion-icon>
+
+        Aun no tienes categorías.
+      </ion-item>
+    }
   </ion-list>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
