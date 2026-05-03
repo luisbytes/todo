@@ -20,9 +20,17 @@
     </ion-select>
   </ion-item>
 
-  <ion-list lines="full">
-    @for (todo of filteredTodos(); track todo.id) {
-      <ion-item-sliding>
+  @if (filteredTodos().length === 0) {
+    <ion-item>
+      <ion-icon slot="start" name="sad-outline" color="primary"></ion-icon>
+
+      Aun no tienes tareas en esta categoría.
+    </ion-item>
+  }
+
+  <cdk-virtual-scroll-viewport itemSize="49" minBufferPx="900" maxBufferPx="1350">
+    <ion-list lines="full">
+      <ion-item-sliding *cdkVirtualFor="let todo of filteredTodos(); track todo?.id">
         <ion-item>
           <ion-checkbox
             slot="start"
@@ -37,8 +45,8 @@
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-    }
-  </ion-list>
+    </ion-list>
+  </cdk-virtual-scroll-viewport>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button routerLink="/add-todo">
