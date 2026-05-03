@@ -11,9 +11,13 @@ This is a simple To-Do application built using Ionic/Angular/Cordova. It allows 
 
 The application uses Firebase Remote Config to enable or disable the "Add Category" feature. This allows you to control the availability of this feature without needing to update the app.
 
-Flag: `enable_category_add`
-Type: Boolean
+Flag: `enable_category_add`<br>
+Type: Boolean<br>
 Default Value: `false`
+
+| Enabled                                                              | Disabled                                                              |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| <img src="screenshots/enabled.png" alt="Screenshot 1" width="300" /> | <img src="screenshots/disabled.png" alt="Screenshot 2" width="300" /> |
 
 ## Prerequisites
 
