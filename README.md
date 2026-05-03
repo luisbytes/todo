@@ -15,9 +15,9 @@ Flag: `enable_category_add`<br>
 Type: Boolean<br>
 Default Value: `false`
 
-| Enabled                                                              | Disabled                                                              |
-| -------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| <img src="screenshots/enabled.png" alt="Screenshot 1" width="300" /> | <img src="screenshots/disabled.png" alt="Screenshot 2" width="300" /> |
+| Enabled                                                               | Disabled                                                               |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| <img src="screenshots/enabled.jpeg" alt="Screenshot 1" width="300" /> | <img src="screenshots/disabled.jpeg" alt="Screenshot 2" width="300" /> |
 
 ## Prerequisites
 
