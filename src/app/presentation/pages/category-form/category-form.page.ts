@@ -7,11 +7,11 @@ import { Component, computed, input, OnInit } from '@angular/core';
   standalone: false,
 })
 export class CategoryFormPage implements OnInit {
-  id = input<string>();
+  id = input<number>();
 
-  isNew = computed(() => this.id() === 'new');
+  isNew = computed(() => this.id() === 0 || this.id() === undefined);
 
-  title = computed(() => (this.isNew() ? 'Create Category' : 'Edit Category'));
+  title = computed(() => (this.isNew() ? 'Crear Categoría' : 'Editar Categoría'));
 
   constructor() {}
 
