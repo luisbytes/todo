@@ -53,7 +53,7 @@ export class CategoryFormPage implements OnInit {
 
   private async createOrUpdateCategory() {
     if (this.isNew()) {
-      await this.categoryStore.createCategory(this.form.value);
+      await this.categoryStore.createCategory(this.form.value.name);
       await this.toastService.showSuccess('Categoría creada exitosamente');
       this.navController.back();
       return;
