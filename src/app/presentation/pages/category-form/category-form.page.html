@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/categories"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ title() }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form>
+    <ion-input
+      label="Category Name"
+      label-placement="floating"
+      fill="solid"
+      placeholder="Enter category name"
+    ></ion-input>
+  </form>
+
+  <ion-button expand="block" class="ion-margin-top">
+    <ion-icon slot="start" name="add-outline"></ion-icon>
+
+    {{ title() }}
+  </ion-button>
+</ion-content>

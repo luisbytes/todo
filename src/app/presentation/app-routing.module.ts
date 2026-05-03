@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/add-todo/add-todo.module').then((m) => m.AddTodoPageModule),
   },
   {
+    path: 'category-form/:id',
+    loadChildren: () => import('./pages/category-form/category-form.module').then((m) => m.CategoryFormPageModule),
+  },
+  {
     path: '',
     redirectTo: 'tabs/home',
     pathMatch: 'full',
