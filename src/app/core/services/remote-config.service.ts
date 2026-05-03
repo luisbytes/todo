@@ -8,6 +8,16 @@ export class RemoteConfigService {
     return (window as any).FirebasexConfig;
   }
 
+  async setConfig(fetchTimeout: number, minimumFetchInterval: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.instance?.setConfigSettings(
+        { fetchTimeout, minimumFetchInterval },
+        () => resolve(),
+        (error: string) => reject(error),
+      );
+    });
+  }
+
   async fetchAndActivate(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.instance?.fetchAndActivate(

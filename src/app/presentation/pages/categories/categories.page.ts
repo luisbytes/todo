@@ -87,6 +87,7 @@ export class CategoriesPage implements OnInit {
 
   private async getFlag() {
     try {
+      await this.remoteConfig.setConfig(60, 60);
       await this.remoteConfig.fetchAndActivate();
 
       const value = await this.remoteConfig.getBoolean('enable_category_add');
