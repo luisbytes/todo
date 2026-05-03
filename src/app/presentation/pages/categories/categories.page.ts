@@ -28,7 +28,7 @@ export class CategoriesPage {
 
   goToEditCategory(category: Category) {
     this.router.navigate(['/category-form/', category.id], {
-      state: { category },
+      state: { ...category },
     });
 
     this.closeSlidingItems();
