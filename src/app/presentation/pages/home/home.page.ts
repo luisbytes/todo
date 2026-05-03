@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+
+import { Todo } from '@app/core/entities';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,13 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class HomePage {
+  todos = signal<Todo[]>([
+    {
+      category: 'Work',
+      title: 'Finish the project report',
+      completed: false,
+    },
+  ]);
 
   constructor() {}
-
 }
