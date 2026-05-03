@@ -41,5 +41,5 @@ ion-toolbar {
 }
 
 ion-toast {
-  --ion-safe-area-top: calc(env(safe-area-inset-top) + 56px);
+  --ion-safe-area-top: calc(var(--ion-safe-area-top) + 56px);
 }
