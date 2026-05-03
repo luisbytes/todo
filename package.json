@@ -5,9 +5,9 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start:android": "ionic cordova run android -l --external",
+    "start:android": "ionic cordova run android",
     "build:android": "ionic cordova build android",
-    "start:ios": "ionic cordova run ios -l --external",
+    "start:ios": "ionic cordova run ios",
     "build:ios": "ionic cordova build ios",
     "lint": "ng lint",
     "fmt": "prettier --write \"src/app/**/*.{ts,scss,html}\""
