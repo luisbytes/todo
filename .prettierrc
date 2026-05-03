@@ -1,0 +1,36 @@
+{
+  "printWidth": 120,
+  "plugins": [
+    "@ianvs/prettier-plugin-sort-imports"
+  ],
+  "importOrder": [
+    "",
+    "^@angular/(.*)$",
+    "",
+    "^@ionic/(.*)$",
+    "",
+    "^@rxjs(.*)$",
+    "",
+    "^@env(.*)$",
+    "",
+    "^@app(.*)$",
+    "",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^[./]"
+  ],
+  "importOrderParserPlugins": [
+    "typescript",
+    "decorators-legacy"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.page.html"
+      ],
+      "options": {
+        "parser": "angular"
+      }
+    }
+  ]
+}

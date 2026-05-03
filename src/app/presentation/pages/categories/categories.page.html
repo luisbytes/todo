@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Categories</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list lines="full">
+    @for (category of categories(); track $index) {
+      <ion-item-sliding>
+        <ion-item [button]="true">
+          {{ category.name }}
+        </ion-item>
+
+        <ion-item-options slot="end">
+          <ion-item-option routerLink="/category-form/{{ category.id }}" color="success" expandable="true">
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+          </ion-item-option>
+
+          <ion-item-option color="danger" expandable="true">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    }
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerLink="/category-form/new">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
