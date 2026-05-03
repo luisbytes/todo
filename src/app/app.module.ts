@@ -4,6 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 
 import { CategoryRepository, TodoRepository } from './core/repositories';
@@ -17,6 +18,7 @@ import { AppComponent } from './presentation/app.component';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     SQLite,
+    SplashScreen,
     { provide: TodoRepository, useClass: TodoSqliteRepository },
     { provide: CategoryRepository, useClass: CategorySqliteRepository },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -5,13 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class RemoteConfigService {
   private get instance() {
-    return (window as any).FirebasexConfig;
+    return (window as any).FirebasePlugin;
   }
 
   async setConfig(fetchTimeout: number, minimumFetchInterval: number): Promise<void> {
     return new Promise((resolve, reject) => {
       this.instance?.setConfigSettings(
-        { fetchTimeout, minimumFetchInterval },
+        fetchTimeout,
+        minimumFetchInterval,
         () => resolve(),
         (error: string) => reject(error),
       );
