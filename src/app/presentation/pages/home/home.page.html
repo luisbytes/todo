@@ -38,6 +38,14 @@
         </ion-item-options>
       </ion-item-sliding>
     }
+
+    @if (filteredTodos().length === 0) {
+      <ion-item>
+        <ion-icon slot="start" name="sad-outline" color="primary"></ion-icon>
+
+        Aun no tienes tareas en esta categoría.
+      </ion-item>
+    }
   </ion-list>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
