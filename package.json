@@ -27,6 +27,7 @@
     "@awesome-cordova-plugins/sqlite": "^9.1.4",
     "@ionic/angular": "^8.0.0",
     "@ionic/cordova-builders": "12.3.0",
+    "@ngrx/signals": "^20.1.0",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
