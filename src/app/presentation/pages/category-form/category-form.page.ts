@@ -40,6 +40,10 @@ export class CategoryFormPage implements OnInit {
   }
 
   async onSubmit() {
+    if (this.form.invalid) {
+      return;
+    }
+
     try {
       await this.createOrUpdateCategory();
     } catch (error) {
@@ -55,7 +59,8 @@ export class CategoryFormPage implements OnInit {
       return;
     }
 
-    await this.categoryStore.updateCategory(Number(this.id()), this.form.value);
+    await this.categoryStore.updateCategory(Number(this.id()), this.form.value.name);
+
     await this.toastService.showSuccess('Categoría actualizada exitosamente');
     this.navController.back();
   }
