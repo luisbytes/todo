@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-list lines="full">
+  <ion-list lines="full" #categoriesList>
     @for (category of categories(); track $index) {
       <ion-item-sliding>
         <ion-item [button]="true">
@@ -13,11 +13,11 @@
         </ion-item>
 
         <ion-item-options slot="end">
-          <ion-item-option (click)="goToEditCategory(category)" color="success" expandable="true">
+          <ion-item-option (click)="goToEditCategory(category)" color="success">
             <ion-icon slot="icon-only" name="pencil"></ion-icon>
           </ion-item-option>
 
-          <ion-item-option color="danger" expandable="true">
+          <ion-item-option (click)="deleteCategory(category)" color="danger">
             <ion-icon slot="icon-only" name="trash"></ion-icon>
           </ion-item-option>
         </ion-item-options>
