@@ -23,6 +23,7 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/platform-browser-dynamic": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "@awesome-cordova-plugins/core": "^9.1.4",
     "@awesome-cordova-plugins/sqlite": "^9.1.4",
     "@ionic/angular": "^8.0.0",
     "@ionic/cordova-builders": "12.3.0",
@@ -48,6 +49,8 @@
     "@typescript-eslint/parser": "^8.18.0",
     "cordova-android": "^15.0.0",
     "cordova-plugin-device": "2.0.2",
+    "cordova-plugin-firebasex-config": "^1.0.3",
+    "cordova-plugin-firebasex-messaging": "^1.0.3",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-splashscreen": "5.0.2",
@@ -75,7 +78,18 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-firebasex-config": {
+        "ANDROID_FIREBASE_CONFIG_VERSION": "23.0.1"
+      },
+      "cordova-plugin-firebasex-messaging": {
+        "FIREBASE_FCM_AUTOINIT_ENABLED": "true",
+        "FIREBASE_MESSAGING_IMMEDIATE_PAYLOAD_DELIVERY": "false",
+        "IOS_FCM_ENABLED": "true",
+        "IOS_ENABLE_CRITICAL_ALERTS_ENABLED": "false",
+        "ANDROID_ICON_ACCENT": "#FFFFFF",
+        "ANDROID_FIREBASE_MESSAGING_VERSION": "25.0.1"
+      }
     },
     "platforms": [
       "android"
