@@ -5,10 +5,10 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "start:android": "ionic cordova run android -l --external",
+    "build:android": "ionic cordova build android",
+    "start:ios": "ionic cordova run ios -l --external",
+    "build:ios": "ionic cordova build ios",
     "lint": "ng lint",
     "fmt": "prettier --write \"src/app/**/*.{ts,scss,html}\""
   },
