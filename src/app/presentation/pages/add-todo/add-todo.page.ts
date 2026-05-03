@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { NavController } from '@ionic/angular';
 
+import { ToastService } from '@app/presentation/services/toast.service';
 import { CategoryStore } from '@app/presentation/store/category.store';
 import { TodoStore } from '@app/presentation/store/todo.store';
 
@@ -23,6 +24,7 @@ export class AddTodoPage implements OnInit {
   private formBuilder = inject(FormBuilder);
 
   private navController = inject(NavController);
+  private toastService = inject(ToastService);
 
   async ngOnInit(): Promise<void> {
     const defaultCategory = this.categories.length > 0 ? this.categories()?.[0].name : '';
@@ -49,6 +51,8 @@ export class AddTodoPage implements OnInit {
       });
 
       this.navController.navigateBack('/tabs/home');
+
+      await this.toastService.showSuccess('Tarea agregada correctamente');
     } finally {
       this.isSubmitting.set(false);
     }
