@@ -7,13 +7,21 @@ This is a simple To-Do application built using Ionic/Angular/Cordova. It allows 
 - Sqlite database for local storage
 - Remote Config for enabled or disable add category feature
 
+## Remote Config
+
+The application uses Firebase Remote Config to enable or disable the "Add Category" feature. This allows you to control the availability of this feature without needing to update the app.
+
+Flag: `enable_category_add`
+Type: Boolean
+Default Value: `false`
+
 ## Prerequisites
 
 Before you can run the application, make sure you have the following installed on your machine:
 
 - Node.js (https://nodejs.org/)
 - Ionic CLI (https://ionicframework.com/docs/cli)
-- Cordova CLI (https://cordova.apache.org/docs/en/latest/guide/cli/index.html
+- Cordova CLI (https://cordova.apache.org/docs/en/latest/guide/cli/index.html)
 - Android Studio (for Android development) or Xcode (for iOS development)
 - A compatible mobile device or emulator for testing
 
