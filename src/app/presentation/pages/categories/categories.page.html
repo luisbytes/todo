@@ -13,7 +13,7 @@
         </ion-item>
 
         <ion-item-options slot="end">
-          <ion-item-option routerLink="/category-form/{{ category.id }}" color="success" expandable="true">
+          <ion-item-option (click)="goToEditCategory(category)" color="success" expandable="true">
             <ion-icon slot="icon-only" name="pencil"></ion-icon>
           </ion-item-option>
 
