@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 import { Todo } from '@app/core/entities';
 
@@ -16,6 +16,23 @@ export class HomePage {
       completed: false,
     },
   ]);
+
+  selectedCategory = signal<string>('');
+
+  categories = computed(() => {
+    const cats = new Set(this.todos().map((todo) => todo.category));
+    return Array.from(cats).sort();
+  });
+
+  filteredTodos = computed(() => {
+    const selected = this.selectedCategory();
+
+    if (selected) {
+      return this.todos().filter((todo) => todo.category === selected);
+    }
+
+    return this.todos();
+  });
 
   constructor() {}
 }

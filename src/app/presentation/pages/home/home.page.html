@@ -4,14 +4,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list lines="full">
-    @for (todo of todos(); track $index) {
-      <ion-item-sliding>
-        <ion-item [button]="true">
-          <ion-checkbox slot="start"></ion-checkbox>
+<ion-content>
+  <ion-item lines="none" color="primary">
+    <ion-select
+      label="Filtrar por categoría"
+      placeholder="Filtrar por categoría"
+      [ngModel]="selectedCategory()"
+      (ngModelChange)="selectedCategory.set($event)"
+    >
+      <ion-select-option value="">Todas</ion-select-option>
 
-          {{ todo.title }}
+      @for (category of categories(); track category) {
+        <ion-select-option [value]="category">{{ category }}</ion-select-option>
+      }
+    </ion-select>
+  </ion-item>
+
+  <ion-list lines="full">
+    @for (todo of filteredTodos(); track $index) {
+      <ion-item-sliding>
+        <ion-item>
+          <ion-checkbox justify="space-between" alignment="start">{{ todo.title }}</ion-checkbox>
         </ion-item>
         <ion-item-options slot="end">
           <ion-item-option color="danger" expandable="true">
