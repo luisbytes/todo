@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 
 import { NavController } from '@ionic/angular';
 
-import { CategoryRepository } from '@app/core/repositories';
 import { ToastService } from '@app/presentation/services/toast.service';
+import { CategoryStore } from '@app/presentation/store/category.store';
 
 @Component({
   selector: 'app-category-form',
@@ -14,6 +14,8 @@ import { ToastService } from '@app/presentation/services/toast.service';
   standalone: false,
 })
 export class CategoryFormPage implements OnInit {
+  private categoryStore = inject(CategoryStore);
+
   id = input<string>();
 
   isNew = computed(() => this.id() === 'new');
@@ -23,7 +25,6 @@ export class CategoryFormPage implements OnInit {
   form: FormGroup;
 
   private formBuilder = inject(FormBuilder);
-  private categoryRepository = inject(CategoryRepository);
   private navController = inject(NavController);
   private router = inject(Router);
   private toastService = inject(ToastService);
@@ -48,13 +49,13 @@ export class CategoryFormPage implements OnInit {
 
   private async createOrUpdateCategory() {
     if (this.isNew()) {
-      await this.categoryRepository.create(this.form.value);
+      await this.categoryStore.createCategory(this.form.value);
       await this.toastService.showSuccess('Categoría creada exitosamente');
       this.navController.back();
       return;
     }
 
-    await this.categoryRepository.update(Number(this.id()), this.form.value);
+    await this.categoryStore.updateCategory(Number(this.id()), this.form.value);
     await this.toastService.showSuccess('Categoría actualizada exitosamente');
     this.navController.back();
   }
