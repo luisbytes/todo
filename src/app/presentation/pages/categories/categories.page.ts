@@ -30,6 +30,8 @@ export class CategoriesPage {
     this.router.navigate(['/category-form/', category.id], {
       state: { category },
     });
+
+    this.closeSlidingItems();
   }
 
   async deleteCategory(category: Category) {
