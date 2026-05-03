@@ -1,7 +1,7 @@
 import { Component, inject, signal, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IonList } from '@ionic/angular';
+import { AlertController, IonList } from '@ionic/angular';
 
 import { Category } from '@app/core/entities';
 import { CategoryRepository } from '@app/core/repositories';
@@ -15,6 +15,7 @@ import { ToastService } from '@app/presentation/services/toast.service';
 })
 export class CategoriesPage {
   private categoryRepository = inject(CategoryRepository);
+  private alertController = inject(AlertController);
   private router = inject(Router);
   private toastService = inject(ToastService);
   private categoriesList = viewChild<IonList>('categoriesList');
@@ -32,6 +33,28 @@ export class CategoriesPage {
   }
 
   async deleteCategory(category: Category) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar categoría',
+      message: 'Al eliminar esta categoría se borrarán también todas las todo asociadas. ¿Deseas continuar?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'Eliminar',
+          role: 'destructive',
+          handler: async () => {
+            await this.performDeleteCategory(category);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  private async performDeleteCategory(category: Category) {
     try {
       await this.categoryRepository.delete(category.id);
       await this.loadCategories();
